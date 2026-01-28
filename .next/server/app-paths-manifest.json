@@ -1,0 +1,4 @@
+{
+  "/api/ghl-contact/route": "app/api/ghl-contact/route.js",
+  "/page": "app/page.js"
+}

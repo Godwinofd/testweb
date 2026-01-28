@@ -1,0 +1,7 @@
+{
+  "name": "Aligned Chiro - NextGen Assessment",
+  "description": "An improved, AI-powered version of the Aligned Chiro assessment quiz, featuring interactive steps and personalized spinal health insights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,101 @@
+﻿
+> aligned-chiro---nextgen-assessment@0.0.0 build
+> next build
+
+node.exe :  Γ¿» 
+Failed to load 
+next.config.js, see 
+more info here https:
+//nextjs.org/docs/mes
+sages/next-config-err
+or
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ( Γ¿» Fa   
+ iled to ...xt-co    
+nfig-error:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+> Build error 
+occurred
+ReferenceError: 
+module is not 
+defined in ES module 
+scope
+This file is being 
+treated as an ES 
+module because it 
+has a '.js' file 
+extension and 'C:\Use
+rs\20015\Downloads\al
+igned-chiro---nextgen
+-assessment\package.j
+son' contains 
+"type": "module". To 
+treat it as a 
+CommonJS script, 
+rename it to use the 
+'.cjs' file 
+extension.
+    at file:///C:/Use
+rs/20015/Downloads/al
+igned-chiro---nextgen
+-assessment/next.conf
+ig.js:62:1
+    at ModuleJob.run 
+(node:internal/module
+s/esm/module_job:413:
+25)
+    at async onImport
+.tracePromise.__proto
+__ (node:internal/mod
+ules/esm/loader:660:2
+6)
+    at async 
+loadConfig (C:\Users\
+20015\Downloads\align
+ed-chiro---nextgen-as
+sessment\node_modules
+\next\dist\server\con
+fig.js:698:36)
+    at async 
+Span.traceAsyncFn (C:
+\Users\20015\Download
+s\aligned-chiro---nex
+tgen-assessment\node_
+modules\next\dist\tra
+ce\trace.js:154:20)
+    at async C:\Users
+\20015\Downloads\alig
+ned-chiro---nextgen-a
+ssessment\node_module
+s\next\dist\build\ind
+ex.js:372:28
+    at async 
+Span.traceAsyncFn (C:
+\Users\20015\Download
+s\aligned-chiro---nex
+tgen-assessment\node_
+modules\next\dist\tra
+ce\trace.js:154:20)
+    at async build (C
+:\Users\20015\Downloa
+ds\aligned-chiro---ne
+xtgen-assessment\node
+_modules\next\dist\bu
+ild\index.js:366:9)
