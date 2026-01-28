@@ -22,7 +22,10 @@ const nextConfig = {
 
   compress: true,
   swcMinify: true,
-  reactStrictMode: true
+  reactStrictMode: true,
+  experimental: {
+    serverExternalPackages: ['isomorphic-dompurify']
+  }
 }
 
 module.exports = nextConfig
