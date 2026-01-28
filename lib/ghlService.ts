@@ -79,7 +79,7 @@ class GoHighLevelService {
         try {
             logger.info({ correlationId, email }, 'Searching contact by email');
 
-            const response = await this.client.get(`/contacts/`, {
+            const response = await this.client.get('/contacts', {
                 params: {
                     locationId: GHL_LOCATION_ID,
                     email: email.toLowerCase().trim()
@@ -118,10 +118,10 @@ class GoHighLevelService {
             const normalizedPhone = this.normalizePhone(phone);
             logger.info({ correlationId, phone: normalizedPhone }, 'Searching contact by phone');
 
-            const response = await this.client.get(`/contacts/`, {
+            const response = await this.client.get('/contacts', {
                 params: {
                     locationId: GHL_LOCATION_ID,
-                    query: normalizedPhone
+                    phone: normalizedPhone
                 }
             });
 
@@ -182,7 +182,7 @@ class GoHighLevelService {
 
             logger.info({ correlationId, email: payload.email }, 'Creating new contact with website_lead tag (API v2)');
 
-            const response = await this.client.post('/contacts/', payload);
+            const response = await this.client.post('/contacts', payload);
 
             const contact = response.data.contact;
             logger.info({ correlationId, contactId: contact.id }, 'Contact created successfully');
