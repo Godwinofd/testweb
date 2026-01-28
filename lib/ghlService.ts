@@ -96,7 +96,12 @@ class GoHighLevelService {
             logger.info({ correlationId }, 'No contact found by email');
             return null;
         } catch (error: any) {
-            logger.error({ correlationId, error: error.message }, 'Error searching contact by email');
+            logger.error({
+                correlationId,
+                error: error.message,
+                responseData: error.response?.data,
+                status: error.response?.status
+            }, 'Error searching contact by email');
             throw new Error('Failed to search contact by email');
         }
     }
@@ -130,7 +135,12 @@ class GoHighLevelService {
             logger.info({ correlationId }, 'No contact found by phone');
             return null;
         } catch (error: any) {
-            logger.error({ correlationId, error: error.message }, 'Error searching contact by phone');
+            logger.error({
+                correlationId,
+                error: error.message,
+                responseData: error.response?.data,
+                status: error.response?.status
+            }, 'Error searching contact by phone');
             throw new Error('Failed to search contact by phone');
         }
     }
