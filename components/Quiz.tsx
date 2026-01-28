@@ -106,8 +106,14 @@ const Quiz: React.FC<QuizProps> = ({ step, setStep, data, setData, onStart, onEx
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Submission failed');
+        let errorMsg = 'Submission failed';
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.error || errorMsg;
+        } catch {
+          errorMsg = `Server error (${response.status}). Please try again later.`;
+        }
+        throw new Error(errorMsg);
       }
 
       // Success

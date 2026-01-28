@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import DOMPurify from 'isomorphic-dompurify';
 import { nanoid } from 'nanoid';
 import logger from '@/lib/logger';
 import rateLimiter from '@/lib/rateLimiter';
 import { verifyRequest } from '@/lib/requestSigner';
 import { detectBot, checkHoneypot, checkSubmissionTiming } from '@/lib/botDetection';
 import ghlService from '@/lib/ghlService';
+
+// Simple sanitizer to replace heavy isomorphic-dompurify
+const sanitize = (str: string) => str.replace(/[<>]/g, '');
 
 // Validation schema
 const contactSchema = z.object({
@@ -123,11 +125,11 @@ export async function POST(request: NextRequest) {
 
         // Sanitize inputs
         const sanitizedData = {
-            firstName: DOMPurify.sanitize(data.firstName.trim()),
-            lastName: DOMPurify.sanitize(data.lastName.trim()),
+            firstName: sanitize(data.firstName.trim()),
+            lastName: sanitize(data.lastName.trim()),
             email: data.email.toLowerCase().trim(),
             phone: data.phone.replace(/\D/g, ''), // Remove non-digits
-            postcode: DOMPurify.sanitize(data.postcode.trim()),
+            postcode: sanitize(data.postcode.trim()),
             quizData: {
                 occupancyStatus: data.occupancyStatus || '',
                 heatingType: data.heatingType || '',
