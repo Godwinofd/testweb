@@ -225,18 +225,28 @@ export async function POST(request: NextRequest) {
 export async function OPTIONS(request: NextRequest) {
     const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
     const origin = request.headers.get('origin') || '';
+    const host = request.headers.get('host') || '';
+    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+    const currentHost = `${protocol}://${host}`;
 
-    const isAllowed = allowedOrigins.includes(origin) ||
+    // Optimization: Allow same-origin or explicit allowed origins
+    const isAllowed =
+        !origin || // Same-origin or server-to-server
+        origin === currentHost ||
+        allowedOrigins.includes(origin) ||
+        allowedOrigins.includes('*') ||
+        (origin.endsWith('.vercel.app') && process.env.NODE_ENV !== 'production') || // Trusted Vercel previews
         process.env.NODE_ENV === 'development';
 
     if (!isAllowed) {
+        logger.warn({ origin, currentHost }, 'CORS blocked');
         return new NextResponse(null, { status: 403 });
     }
 
     return new NextResponse(null, {
         status: 200,
         headers: {
-            'Access-Control-Allow-Origin': origin,
+            'Access-Control-Allow-Origin': origin || '*',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Max-Age': '86400',
